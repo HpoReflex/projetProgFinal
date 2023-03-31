@@ -1,0 +1,36 @@
+<div id="modal-add-position">
+    <h1>Edit certificate</h1>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name">
+    </mat-form-field>
+    <span>
+    <mat-form-field appearance="fill">
+        <mat-label>Active</mat-label>
+        <mat-select [(ngModel)]="active">
+          <mat-option [value]="true">True</mat-option>
+          <mat-option [value]="false">False</mat-option>
+        </mat-select>
+    </mat-form-field>
+    </span>
+</div>
+<div>
+    <span>
+    <mat-form-field appearance="fill" id="modal-add-niveau">
+        <mat-label>Niveau</mat-label>
+        <mat-select [(ngModel)]="niveau">
+            <mat-option *ngFor="let niveauType of niveauTypes" [value]="niveauType.value">{{niveauType.label}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    </span>
+</div>
+<div>
+    <mat-form-field appearance="fill" id="modal-add-description" >
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="description"></textarea>
+    </mat-form-field>
+</div>
+<div>
+    <app-button-componant color="grey" text="Cancel" id="modal-add-button" (btnClick)="onCancel()"></app-button-componant>
+    <app-button-componant color="green" text="Edit" (btnClick)="onEdit()"></app-button-componant>
+</div>

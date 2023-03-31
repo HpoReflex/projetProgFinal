@@ -1,0 +1,45 @@
+
+<p *ngIf="!inventoryItems"><em>Page Introuvable</em></p>
+
+<div *ngIf="inventoryItems">
+    <div style="min-width: 500px;">
+        <div class="card-content content">
+            <span class="card-title2 ">Cybersecurity certificates</span>
+            <br><br>
+            <table class='table table-striped highlight content-container highlight' aria-labelledby="tableLabel">
+              <thead>
+                <tr>
+                  <th class="buttonComponant"><app-button-componant color="green" text="Add" (btnClick)="modalOpenAdd()"></app-button-componant></th>
+                  <th style="padding-right:25px">Id</th>
+                  <th>niveau</th>
+                  <th>name</th>
+                  <th>description</th>
+                  <th>active</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let inventoryItem of inventoryItems" (onDeleteCert)="selectCert(inventoryItem.id)" onclick="M.Modal.init(document.querySelector('.modal')).open()">
+                  <td></td>
+                  <td style="padding-right:25px">{{ inventoryItem.id }}</td>
+                  <td>{{ inventoryItem.niveau }}</td>
+                  <td>{{ inventoryItem.name }}</td>
+                  <td>{{ inventoryItem.description }}</td>
+                  <td>{{ inventoryItem.active }}</td>
+                  <td><app-button-componant color="green" text="Edit" (btnClick)="modalOpenEdit(inventoryItem)"></app-button-componant></td>
+                  <td><app-button-componant color="red" text="Delete" (btnClick)="modalOpen()" (click)="selectCert(inventoryItem.id)"></app-button-componant></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+  <!-- Modal Structure 
+  <div class="modal">
+    <div class="modal-content">
+      <h4>Confirmation</h4>
+      <p>Etes vous sur de vouloir supprimer cette ligne ?</p>
+    </div>
+    <div class="modal-                                                                                                                                                                                                                                                                                                                                                                                                                                                      footer">
+      <a href="#!" (click)="deleteCert()" class="modal-close waves-effect waves-green btn-flat">OUI</a>
+    </div>
+  </div>-->

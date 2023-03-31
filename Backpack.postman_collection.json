@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "4170cfb4-1fff-41d1-b8a7-db395b77d525",
+		"name": "Backpack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6957277"
+	},
+	"item": [
+		{
+			"name": "Init",
+			"item": [
+				{
+					"name": "Check DB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7054/api/CheckDB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7054",
+							"path": [
+								"api",
+								"CheckDB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InitDB",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7054/api/InitDB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7054",
+							"path": [
+								"api",
+								"InitDB"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List InventoryItems",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    \r",
+							"    let result = \"\";\r",
+							"    for (i=0;i<jsonData.length;i++){\r",
+							"        console.log(jsonData[i].label);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7054/api/InventoryItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7054",
+					"path": [
+						"api",
+						"InventoryItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get InventoryItem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7054/api/InventoryItems/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7054",
+					"path": [
+						"api",
+						"InventoryItems",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save InventoryItems",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"test\",\r\n    \"description\": \"Une belle tente\",\r\n    \"inTheBag\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7054/api/InventoryItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7054",
+					"path": [
+						"api",
+						"InventoryItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update InventoryItems",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Tente\",\r\n    \"description\": \"Une belle tente2\",\r\n    \"inTheBag\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7054/api/InventoryItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7054",
+					"path": [
+						"api",
+						"InventoryItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete InventoryItems",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Tente\",\r\n    \"description\": \"Une belle tente2\",\r\n    \"inTheBag\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7054/api/InventoryItems/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7054",
+					"path": [
+						"api",
+						"InventoryItems",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
