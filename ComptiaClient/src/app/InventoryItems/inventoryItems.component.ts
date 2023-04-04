@@ -16,15 +16,13 @@ export class InventoryItemsListComponent implements OnInit {
   public inventoryItems: InventoryItem[] | undefined;
   private api = "http://localhost:7054/api/InventoryItems";
 
-  @Output() onDeleteCert: EventEmitter<InventoryItem> = new EventEmitter();
-
   constructor(private httpClient: HttpClient, private router: Router, private matDialog:MatDialog) { }
 
   ngOnInit(): void {
-    console.log('InventoryItemsListComponent');
     this.httpClient.get<InventoryItem[]>(`${this.api}`).subscribe(result => this.inventoryItems = result);
   }
 
+  // Modal creation for Delete button
   modalOpen() {
     const modal = this.matDialog.open(ModalComponent,{
     width:'450px',
@@ -42,6 +40,7 @@ export class InventoryItemsListComponent implements OnInit {
     });
   }
 
+  // Modal creation for Add button
   modalOpenAdd() {
     const modalOpen = this.matDialog.open(ModalAddComponent,{
     width:'455px',
@@ -59,6 +58,7 @@ export class InventoryItemsListComponent implements OnInit {
     });
   }
 
+  // Modal creation for Edit button
   modalOpenEdit(certificate: InventoryItem) {
     const modalOpen = this.matDialog.open(ModalEditComponent,{
     width:'455px',
@@ -78,6 +78,7 @@ export class InventoryItemsListComponent implements OnInit {
     });
   }
 
+  // Api call to add new Cert and refresh results
   addCertificate(newCert: any) {
     this.httpClient.post<InventoryItem>(`${this.api}`, newCert).subscribe(result => {
       this.httpClient.get<InventoryItem[]>(`${this.api}`).subscribe(result => this.inventoryItems = result);
@@ -86,6 +87,7 @@ export class InventoryItemsListComponent implements OnInit {
     });
   }
 
+  // Api call to edit existing Cert
   editCertificate(editedCert: InventoryItem) {
     this.httpClient.put<InventoryItem>(`${this.api}`, editedCert).subscribe(result => {
       this.httpClient.get<InventoryItem[]>(`${this.api}`).subscribe(result => this.inventoryItems = result);
@@ -94,16 +96,13 @@ export class InventoryItemsListComponent implements OnInit {
     });
   }
 
-  removeCertificate(inventoryItem: any) {
-    this.onDeleteCert.emit(inventoryItem);
-  }
-
+  // select id for deletion
   selectedCert:number|undefined;
-
   selectCert(id:number) {
     this.selectedCert = id;
   }
 
+  // Api call to delete existing Cert
   deleteCert()
   {
     if(this.selectedCert != undefined){

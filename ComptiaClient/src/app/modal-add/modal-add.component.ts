@@ -15,17 +15,20 @@ export class ModalAddComponent {
   description: string = '';
   active: number = 0;
 
+  // Values for drop-down menu "Niveau"
   niveauTypes = [
     { value: 'Novice', label: 'Novice' },
     { value: 'Intermediate', label: 'Intermediate' },
     { value: 'Expert', label: 'Expert' }
   ]
 
+  // Confirm new Cert creation
   onAdd() {
     const newCert = { niveau: this.niveau, name: this.name, description: this.description, active: this.active };
     this.confirmAdd.emit(newCert);
   }
 
+  // Cancel Cert creation (close modal)
   onCancel() {
     this.confirmAdd.emit(false);
   }

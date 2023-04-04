@@ -16,14 +16,15 @@ export class ModalEditComponent {
   description: string = '';
   active: number = 0;
 
+  // Values for drop-down menu "Niveau"
   niveauTypes = [
     { value: 'Novice', label: 'Novice' },
     { value: 'Intermediate', label: 'Intermediate' },
     { value: 'Expert', label: 'Expert' }
   ]
 
+  // to set proper values corresponding to certificate being edited
   ngOnInit(): void {
-    // set the component properties to the certificate values
     this.niveau = this.certificate.niveau;
     this.name = this.certificate.name;
     this.description = this.certificate.description;
@@ -31,9 +32,10 @@ export class ModalEditComponent {
     console.log(this.active)
   }
 
+  // Confirm Cert edit
   onEdit() {
     const editedCert = {
-      ...this.certificate, // keep the certificate ID
+      ...this.certificate, // To create new object and keep id
       niveau: this.niveau,
       name: this.name,
       description: this.description,
@@ -42,6 +44,7 @@ export class ModalEditComponent {
     this.confirmEdit.emit(editedCert);
   }
 
+  // Cancel Cert edit
   onCancel() {
     this.confirmEdit.emit(false);
   }
